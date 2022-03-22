@@ -10,10 +10,11 @@ def open_and_read_file(file_path):
     the file's contents as one string of text.
     """
 
-    # your code goes here
+    # read the entire contents of file as a string using .read() method
+    contents = open(file_path).read()
 
-    return 'Contents of your file as one long string'
-
+    #return 'Contents of your file as one long string'
+    return contents
 
 def make_chains(text_string):
     """Take input text as string; return dictionary of Markov chains.
@@ -42,7 +43,33 @@ def make_chains(text_string):
 
     chains = {}
 
-    # your code goes here
+    # split each word by whitespace 
+    words = text_string.split() # words = list of strings
+
+    for index in range(len(words)-2):
+        #print(words[word], words[word + 1])
+        bi_grams = (words[index], words[index + 1])
+        value = words[index + 2]
+        #print(bi_grams)
+
+        if bi_grams in chains:
+            chains[bi_grams].append(value) # creating key value set for bi_grams already in dict
+        
+        elif bi_grams not in chains:
+            chains[bi_grams] = [value] # adding key value set for bi_grams not in dict
+
+
+    for bi_grams, value in chains.items(): # printing out dictionary so it looks pretty :) 
+        print(f'{bi_grams} : {value}')   
+
+
+# EXAMPLE FOR WORKING WITH RANGE AND INDEX (I.E. LINE 50, 53) - not relevant to function!
+
+#hello = ["h", "e", "l", "l", "o"]
+
+#range(len(hello)-2)
+#range(3)
+
 
     return chains
 
