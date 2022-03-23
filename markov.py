@@ -59,8 +59,8 @@ def make_chains(text_string):
             chains[bi_grams] = [value] # adding key value set for bi_grams not in dict
 
 
-    for bi_grams, value in chains.items(): # printing out dictionary so it looks pretty :) 
-        print(f'{bi_grams} : {value}')   
+    #for bi_grams, value in chains.items(): # printing out dictionary so it looks pretty :) 
+        #print(f'{bi_grams} : {value}')   
 
 
 # EXAMPLE FOR WORKING WITH RANGE AND INDEX (I.E. LINE 50, 53) - not relevant to function!
@@ -77,9 +77,33 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
-    words = []
-
+    #words = []
     # your code goes here
+    
+    #choice((list(chains.keys()))
+    bi_grams_list = list(chains.keys())
+    key = choice(bi_grams_list)
+    #key = choice(list(chains.keys()))
+
+    #words = [key[0], key[1]]
+    words = []
+    random_word = choice(chains[key])
+
+    while True:
+        key = (key[1], random_word)
+        
+        if key in chains:
+            words.append(random_word)
+            random_word = choice(chains[key])
+
+        else:
+            break
+    
+    words.append(random_word)
+    
+        #random_key = choice((list(chains.keys())))
+        #choice((list(chains.keys())))
+
 
     return ' '.join(words)
 
